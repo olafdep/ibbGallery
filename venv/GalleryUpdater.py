@@ -38,10 +38,16 @@ def CreateWebPage():
                 "BODYTEXT" \
                 "</body>" \
                 "</html>"
-    
+    bodytext = ""
+    for href in hrefs:
+        bodytext = bodytext + href + "<br>\n"
 
+    html_page = html_page.replace("BODYTEXT", bodytext)
+    with open('index.html', 'w') as my_data_file:
+        my_data_file.write(html_page)
 
 if __name__ == '__main__':
     GetIBBLinks()
     ExtractHTML()
+    CreateWebPage()
     print("Done")
